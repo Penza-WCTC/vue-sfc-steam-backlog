@@ -31,7 +31,7 @@ export default {
             <game-description :active-game="activeGame"></game-description>
 
             <div class="row mb-1">
-                <div class="col-md bg-success-subtle border rounded border-1 border-success mb-2">
+                <div class="col-md bg-secondary bg-opacity-10 border rounded border-1 border-opacity-50 border-success mb-2">
                     <div class="row mt-2 px-2">
                         <div class="col">
                             <p class="fs-5">CoolGamer123</p>
@@ -40,8 +40,8 @@ export default {
                             <p class="fs-5"> <i class="bi bi-arrow-up"></i> 14</p>
                         </div>
                         <div class="col text-nowrap">
-                            <p class="fs-4"><i class="bi bi-star-fill me-1"></i><i class="bi bi-star-fill me-1"></i><i
-                                    class="bi bi-star-fill me-1"></i><i class="bi bi-star-fill me-1"></i><i
+                            <p class="fs-4"><i class="bi bi-star-fill me-1 text-success"></i><i class="bi bi-star-fill me-1 text-success"></i><i
+                                    class="bi bi-star-fill me-1 text-success"></i><i class="bi bi-star-fill me-1 text-success"></i><i
                                     class="bi bi-star me-1"></i></p>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="col-md offset-md-1 bg-danger-subtle border rounded border-1 border-danger mb-2">
+                <div class="col-md bg-secondary bg-opacity-10 border rounded border-1 border-opacity-50 border-danger mb-2 ms-4">
                     <div class="row mt-2 px-2">
                         <div class="col">
                             <p class="fs-5">CandyMode3212</p>
@@ -64,7 +64,7 @@ export default {
                             <p class="fs-5"> <i class="bi bi-arrow-up"></i> 5</p>
                         </div>
                         <div class="col text-nowrap">
-                            <p class="fs-4"><i class="bi bi-star-fill me-1"></i><i class="bi bi-star-fill me-1"></i><i
+                            <p class="fs-4"><i class="bi bi-star-fill me-1 text-danger"></i><i class="bi bi-star-fill me-1 text-danger"></i><i
                                     class="bi bi-star me-1"></i><i class="bi bi-star me-1"></i><i
                                     class="bi bi-star me-1"></i></p>
                         </div>

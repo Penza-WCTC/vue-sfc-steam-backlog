@@ -9,17 +9,14 @@ export default {
 
 <template>
     <div class="text-center">
-        <p class="fs-2">
-            {{ activeGame.name }}
-        </p>
         <hr>
     </div>
 
     <div class="row mb-1">
-        <div class="col-md-5">
+        <div class="col-md">
             <div class="row">
                 <p class="fs-4 text-center">
-                    Description
+                    {{ activeGame.name }}
                 </p>
             </div>
             <div class="row">
@@ -29,7 +26,7 @@ export default {
             </div>
         </div>
 
-        <div class="offset-md-2 col-md-5">
+        <div class="col-md ms-4">
             <div class="row">
                 <p class="fs-4">Tags: </p>
                 <div>
