@@ -237,7 +237,7 @@ export default{
                 <review-list-item v-if="review.gameId === newReview.gameId" :review="review"></review-list-item>
             </div>
 
-            <div class="d-flex justify-content-end sticky-bottom ">
+            <div class="d-flex justify-content-end sticky-bottom bottom-5">
                 <button @click="clearReview" class="button btn btn-primary">Find your Next Game!</button>
             </div>
         </div>
