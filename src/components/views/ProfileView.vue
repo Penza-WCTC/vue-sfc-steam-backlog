@@ -72,15 +72,15 @@ export default {
 
         <div v-for="review in reviewList">
             <div v-if="review.userId === '123123123123123123'"
-                :class="{ 'container': true, 'pb-3': true, 'my-4': true, 'rounded': true, 'border': true, 'border-opacity-50': true, 'border-danger': review.ratingNumber < 3, 'border-success': review.ratingNumber > 2, 'py-3': true, 'px-1': true, 'bg-danger-subtle': review.ratingNumber < 3, 'bg-success-subtle': review.ratingNumber > 2 }">
+                :class="{ 'container': true, 'pb-3': true, 'my-4': true, 'rounded': true, 'border': true, 'border-opacity-50': true, 'border-danger': review.ratingNumber < 3, 'border-success': review.ratingNumber > 2, 'py-3': true, 'px-1': true, 'bg-light': true, 'position-relative': true }">
                 <div class="offset-1">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <p class="fs-4">{{ review.gameName }} Review</p>
+                            <p class="fs-3">{{ review.gameName }} Review</p>
                         </div>
                         <div class="col-md-6" v-if="!review.editing">
-                            <p class="fs-4">
-                                <i class="bi bi-star-fill ms-1" v-for="n in review.ratingNumber"></i>
+                            <p class="fs-3">
+                                <i :class="{'bi':true, 'bi-star-fill':true, 'ms-1':true, 'text-success':review.ratingNumber>2, 'text-danger':review.ratingNumber<3}" v-for="n in review.ratingNumber"></i>
                                 <i class="bi bi-star ms-1" v-for="n in (review.ratingNumber - 5) * -1"
                                     v-if="(review.ratingNumber - 5) * -1"></i>
                             </p>
@@ -107,17 +107,14 @@ export default {
                     <div class="row g-3">
                         <div class="col-md-6  d-none d-md-block">
                             <div class="row">
-                                <p class="fs-5">Hours Played:</p>
-                            </div>
-                            <div class="row">
-                                <p class="fs-6">{{ review.hoursPlayed }}</p>
+                                <p class="fs-5">{{ review.hoursPlayed }} Hours Played</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-auto">
                                     <p class="px-2 py-1 fs-6 rounded-pill bg-info d-inline-block">{{ review.completion
-                                    }}
+                                        }}
                                     </p>
                                 </div>
                             </div>
