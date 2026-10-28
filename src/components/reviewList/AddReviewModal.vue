@@ -1,4 +1,6 @@
 <script>
+import {Modal} from 'bootstrap'
+
 export default {
     name: "AddReviewModal",
 
@@ -61,7 +63,7 @@ export default {
 </script>
 
 <template>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

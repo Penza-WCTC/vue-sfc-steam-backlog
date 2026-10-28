@@ -7,7 +7,7 @@ export default {
 
     computed: {
         getSRC() {
-            return `./images/test-images/${this.review.userName}ProfileIcon.png`
+            return `@/images/test-images/${this.review.userName}ProfileIcon.png`
         },
 
         getAlt() {

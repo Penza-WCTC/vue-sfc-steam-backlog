@@ -1,0 +1,153 @@
+<script>
+
+export default {
+    name: "ProfileView",
+
+    data: function () {
+        return {
+            editingReview: {},
+
+        }
+    },
+
+    methods:{
+        editReview(review) {
+            review.review = this.editingReview.review;
+            review.ratingNumber = this.editingReview.ratingNumber;
+            review.editing = false;
+        },
+    },
+
+    props: {
+        reviewList: { type: Object, required: true }
+    }
+}
+</script>
+
+<template>
+
+    <div class="bg-secondary-subtle">
+
+        <div class="container text-start pb-3 mb-4 border border-2 py-3 rounded bg-light">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <img src="./images/test-images/testUserProfileIcon.png"
+                        class="w-50 mx-auto d-block rounded rounded-3" alt="Factorio's Steam Cover">
+                </div>
+
+                <div class="col-md-8 d-flex flex-column justify-content-evenly">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="fs-4">testUser</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <p class="fs-4">Total Playtime:</p>
+                            </div>
+                            <div class="row">
+                                <p class="fs-5">523 Hrs</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <p class="fs-4">Currently Playing:</p>
+                            </div>
+                            <div class="row">
+                                <p class="fs-5">Stardew Valley</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search Your Reviews" aria-label="Search" />
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+
+        <div v-for="review in reviewList">
+            <div v-if="review.userId === '123123123123123123'"
+                :class="{ 'container': true, 'pb-3': true, 'my-4': true, 'rounded': true, 'border': true, 'border-opacity-50': true, 'border-danger': review.ratingNumber < 3, 'border-success': review.ratingNumber > 2, 'py-3': true, 'px-1': true, 'bg-danger-subtle': review.ratingNumber < 3, 'bg-success-subtle': review.ratingNumber > 2 }">
+                <div class="offset-1">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <p class="fs-4">{{ review.gameName }} Review</p>
+                        </div>
+                        <div class="col-md-6" v-if="!review.editing">
+                            <p class="fs-4">
+                                <i class="bi bi-star-fill ms-1" v-for="n in review.ratingNumber"></i>
+                                <i class="bi bi-star ms-1" v-for="n in (review.ratingNumber - 5) * -1"
+                                    v-if="(review.ratingNumber - 5) * -1"></i>
+                            </p>
+                        </div>
+                        <div class="col-md-6" v-if="review.editing">
+                            <p class="fs-4 text-secondary">
+                                <i :class="{ 'bi': true, 'pointer': true, 'bi-star-fill': editingReview.ratingNumber > 0, 'bi-star': editingReview.ratingNumber == 0, 'ms-1': true }"
+                                    @click="editingReview.ratingNumber = 1"></i>
+
+                                <i :class="{ 'bi': true, 'pointer': true, 'bi-star-fill': editingReview.ratingNumber > 1, 'bi-star': editingReview.ratingNumber <= 1, 'ms-1': true }"
+                                    @click="editingReview.ratingNumber = 2"></i>
+
+                                <i :class="{ 'bi': true, 'pointer': true, 'bi-star-fill': editingReview.ratingNumber > 2, 'bi-star': editingReview.ratingNumber <= 2, 'ms-1': true }"
+                                    @click="editingReview.ratingNumber = 3"></i>
+
+                                <i :class="{ 'bi': true, 'pointer': true, 'bi-star-fill': editingReview.ratingNumber > 3, 'bi-star': editingReview.ratingNumber <= 3, 'ms-1': true }"
+                                    @click="editingReview.ratingNumber = 4"></i>
+
+                                <i :class="{ 'bi': true, 'pointer': true, 'bi-star-fill': editingReview.ratingNumber > 4, 'bi-star': editingReview.ratingNumber <= 4, 'ms-1': true }"
+                                    @click="editingReview.ratingNumber = 5"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6  d-none d-md-block">
+                            <div class="row">
+                                <p class="fs-5">Hours Played:</p>
+                            </div>
+                            <div class="row">
+                                <p class="fs-6">{{ review.hoursPlayed }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-auto">
+                                    <p class="px-2 py-1 fs-6 rounded-pill bg-info d-inline-block">{{ review.completion
+                                        }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 pe-md-5">
+                        <div class="row" v-if="!review.editing">
+                            <p class="fs-4">Final Thoughts:</p>
+                            <p class="fs-6">{{ review.review }}</p>
+                            <div class="d-flex justify-content-end">
+                                <p class="p-2"><i class="bi bi-trash-fill pointer" @click="removeItem(review)"></i></p>
+                                <p class="p-2"><i class="bi bi-pencil-fill pointer"
+                                        @click="review.editing = !review.editing, editingReview.review = review.review, editingReview.ratingNumber = review.ratingNumber"></i>
+                                </p>
+                            </div>
+                        </div>
+
+                        <form class="row" @submit.prevent="editReview(review)" v-if="review.editing">
+                            <p class="fs-4">Edit Your Thoughts:</p>
+                            <textarea name="editReview"
+                                v-model="editingReview.review">{{ editingReview.review }}</textarea>
+                            <div class="mt-2 justify-content-end d-flex">
+                                <button type="submit" class="btn btn-primary mx-2">Submit</button>
+                                <button type="button" class="btn btn-danger"
+                                    @click="review.editing = !review.editing">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

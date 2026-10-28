@@ -1,0 +1,11 @@
+@use "sass:color";
+
+@import "variables";
+
+.pointer{
+  cursor : pointer;
+}
+
+
+// include bootstrap
+@import "bootstrap/scss/bootstrap.scss";
