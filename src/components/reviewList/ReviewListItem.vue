@@ -21,7 +21,16 @@ export default {
 
 <template>
     <div
-        :class="{ 'container': true, 'pb-3': true, 'my-4': true, 'rounded': true, 'border': true, 'border-opacity-50': true, 'border-danger': review.ratingNumber < 3, 'border-success': review.ratingNumber > 2, 'py-3': true, 'px-1': true, 'bg-light': true }">
+        :class="{ 'container': true, 'pb-3': true, 'my-4': true, 'rounded': true, 'border': true, 'border-opacity-50': true, 'border-danger': review.ratingNumber < 3, 'border-success': review.ratingNumber > 2, 'py-3': true, 'px-1': true, 'bg-light': true, 'position-relative': true }">
+        <div class="position-absolute top-25 start-5">
+            <p><i @click="review.communityVote++"
+                    :class="{ 'bi': true, 'pointer': true, 'bi-arrow-up-circle': true }"></i></p>
+            <div>
+                <p>{{ review.communityVote }}</p>
+            </div>
+            <p><i @click="review.communityVote--"
+                    :class="{ 'bi': true, 'pointer': true, 'bi-arrow-down-circle': true }"></i></p>
+        </div>
         <div class="row g-3">
             <div class="col-md-2 offset-md-1 d-none d-md-block">
                 <img :src="getSRC" :alt="getAlt" class="w-75 mx-auto border border-2 rounded-3">
@@ -29,10 +38,10 @@ export default {
             <div class="col-md-9 offset-1 offset-md-0">
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <p class="fs-4">{{ review.userName }}</p>
+                        <p class="fs-3">{{ review.userName }}</p>
                     </div>
                     <div class="col-md-6">
-                        <p class="fs-4">
+                        <p class="fs-3">
                             <i :class="{ 'bi': true, 'bi-star-fill ms-1': true, 'text-success': review.ratingNumber > 2, 'text-danger': review.ratingNumber <= 2 }"
                                 v-for="n in review.ratingNumber"></i>
                             <i :class="{ 'bi': true, 'bi-star ms-1': true, 'text-black': review.ratingNumber > 2, 'text-black': review.ratingNumber <= 2 }"
@@ -43,19 +52,14 @@ export default {
                 <div class="row g-3">
                     <div class="col-md-6  d-none d-md-block">
                         <div class="row">
-                            <p class="fs-4">Hours Played:</p>
-                        </div>
-                        <div class="row">
-                            <p class="fs-5">{{ review.hoursPlayed }}</p>
+                            <p class="fs-5">{{ review.hoursPlayed }} Hours Played</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row">
-                            <p class="fs-4">I completed:</p>
-                        </div>
-                        <div class="row">
                             <div class="col-md-auto">
-                                <p class="px-2 py-1 fs-6 rounded-pill bg-info d-inline-block">{{ review.completion }}</p>
+                                <p class="px-2 py-1 fs-6 rounded-pill bg-info d-inline-block">{{ review.completion }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -67,16 +71,6 @@ export default {
                 <p class="fs-4">Final Thoughts:</p>
                 <p class="fs-6">{{ review.review }}</p>
             </div>
-            <div class="col-2">
-                <p><i @click="review.communityVote++"
-                        :class="{ 'bi': true, 'pointer': true, 'bi-arrow-up-circle': true }"></i></p>
-                <div>
-                    <p>{{ review.communityVote }}</p>
-                </div>
-                <p><i @click="review.communityVote--"
-                        :class="{ 'bi': true, 'pointer': true, 'bi-arrow-down-circle': true }"></i></p>
-            </div>
         </div>
     </div>
-
 </template>
