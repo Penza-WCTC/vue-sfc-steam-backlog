@@ -65,7 +65,7 @@ export default {
 <template>
     <div class="modal fade" tabindex="-1" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-primary-subtle">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Review Game</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -98,7 +98,7 @@ export default {
                         </div>
 
                         <label for="finalThoughts" class="fs-5">Final Thoughts:</label>
-                        <textarea name="finalThoughts" id="finalThoughts" class="fs-6 mb-2"
+                        <textarea name="finalThoughts" id="finalThoughts" class="fs-6 mb-2 form-control"
                             v-model="reviewObject.review"></textarea>
 
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>

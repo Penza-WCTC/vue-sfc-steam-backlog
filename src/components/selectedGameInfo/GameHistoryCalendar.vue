@@ -1,3 +1,14 @@
+<!-- 
+ NOT IMPLEMENTED YET!!! This is where I spent most of this week, I am trying to add functionality to the callendar that is on the home page. 
+ 
+ I plan on letting users fill out a little form, and then that get handled by a "GameHistoryCard" or smthn.
+
+ Then if you click on the callendar date, it will emit up to the GameHistoryCard with the date clicked so it can retrieve the data.
+
+ I am thinking a simple form, like hours, (rating, date, something), and a notes section.
+-->
+
+
 <script>
 export default {
     name: "GameHistoryCalendar",
