@@ -1,4 +1,5 @@
 <script>
+
 export default {
     name: "ReviewListItem",
     props: {
@@ -7,7 +8,8 @@ export default {
 
     computed: {
         getSRC() {
-            return `@/images/test-images/${this.review.userName}ProfileIcon.png`
+            console.log(this.review.userName)
+            return new URL(`/src/images/test-images/${this.review.userName}ProfileIcon.png`, import.meta.url).href
         },
 
         getAlt() {

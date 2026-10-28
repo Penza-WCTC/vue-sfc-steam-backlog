@@ -10,7 +10,7 @@ export default {
         }
     },
 
-    methods:{
+    methods: {
         editReview(review) {
             review.review = this.editingReview.review;
             review.ratingNumber = this.editingReview.ratingNumber;
@@ -31,7 +31,7 @@ export default {
         <div class="container text-start pb-3 mb-4 border border-2 py-3 rounded bg-light">
             <div class="row g-3">
                 <div class="col-md-4">
-                    <img src="./images/test-images/testUserProfileIcon.png"
+                    <img src="/src/images/test-images/testUserProfileIcon.png"
                         class="w-50 mx-auto d-block rounded rounded-3" alt="Factorio's Steam Cover">
                 </div>
 
@@ -63,11 +63,12 @@ export default {
             </div>
         </div>
 
-
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search Your Reviews" aria-label="Search" />
-            <button class="btn btn-success" type="submit">Search</button>
-        </form>
+        <div class="container">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search Your Reviews" aria-label="Search" />
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
 
         <div v-for="review in reviewList">
             <div v-if="review.userId === '123123123123123123'"
@@ -116,7 +117,7 @@ export default {
                             <div class="row">
                                 <div class="col-md-auto">
                                     <p class="px-2 py-1 fs-6 rounded-pill bg-info d-inline-block">{{ review.completion
-                                        }}
+                                    }}
                                     </p>
                                 </div>
                             </div>

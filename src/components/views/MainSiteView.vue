@@ -102,8 +102,10 @@ export default{
 </script>
 
 <template>
-<progress-bar :progress-text="['Pick', 'Play', 'Review']"
-            :progress="[Boolean(!activeGame.appId && !newReview.gameName), Boolean(activeGame.appId), Boolean(newReview.gameName)]"></progress-bar>
+    <div class="container">
+        <progress-bar :progress-text="['Pick', 'Play', 'Review']"
+        :progress="[Boolean(!activeGame.appId && !newReview.gameName), Boolean(activeGame.appId), Boolean(newReview.gameName)]"></progress-bar>
+    </div>
 
         <div id="view1" v-if="activeGame.appId">
 
