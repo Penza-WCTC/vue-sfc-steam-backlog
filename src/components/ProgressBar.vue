@@ -58,11 +58,13 @@ export default {
 }
 </script>
 
+<!-- wasn't able to get around to recreating the progress bar, so I swapped the colors like you said. -->
+
 <template>
-    <div class="w-100 mb-4 bg-info-subtle rounded border border-2">
+    <div class="w-100 mb-4 bg-light rounded border border-2">
         <div class="d-flex justify-content-around rounded">
             <div v-for="(section, index) in getStylingBarArray"
-                :class="{ 'w-fill': true, 'flex-fill': true, 'text-center': true, 'rounded': true, 'bg-light': section > 0, 'rounded': section > 0, 'border': section > 0, 'border-2': section > 0, 'border-primary-subtle': section > 0, 'border-end-0': section == 2 || section == 3, 'rounded-end-0': section == 2 || section == 3, 'border-start-0': section == 1 || section == 3, 'rounded-start-0': section == 3, 'rounded-end-5': section == 1 || section == 4, 'rounded-start-4': section == 4 }">
+                :class="{ 'w-fill': true, 'flex-fill': true, 'text-center': true, 'rounded': true, 'bg-info-subtle': section > 0, 'rounded': section > 0, 'border': section > 0, 'border-2': section > 0, 'border-info-subtle': section > 0, 'border-end-0': section == 2 || section == 3, 'rounded-end-0': section == 2 || section == 3, 'border-start-0': section == 1 || section == 3, 'rounded-start-0': section == 3, 'rounded-end-5': section == 1 || section == 4, 'rounded-start-4': section == 4 }">
                 {{ getText(index) }}</div>
         </div>
     </div>
