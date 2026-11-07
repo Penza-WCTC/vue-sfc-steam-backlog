@@ -1,10 +1,10 @@
 <script>
 import GameSelectorSection from '@/components/gameSelection/GameSelectorSection.vue';
 import AddReviewModal from '@/components/reviewList/AddReviewModal.vue';
-import ReviewListItem from '@/components/reviewList/ReviewListItem.vue';
 import SteamImage from '@/components/SteamImage.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import ActiveGameDisplay from '@/components/selectedGameInfo/ActiveGameDisplay.vue';
+import ReviewList from '@/components/reviewList/ReviewList.vue';
 
 export default{
     name: "MainSiteView",
@@ -16,7 +16,7 @@ export default{
     components: {
         GameSelectorSection,
         AddReviewModal,
-        ReviewListItem,
+        ReviewList,
         SteamImage,
         ProgressBar,
         ActiveGameDisplay,
@@ -233,9 +233,7 @@ export default{
 
             <!-- list component to put a compression on this list to squish down the elements -->
 
-            <div class="container text-start" v-for="review in reviewList">
-                <review-list-item v-if="review.gameId === newReview.gameId" :review="review"></review-list-item>
-            </div>
+            <review-list :review-list="reviewList" :new-review="newReview"></review-list>
 
             <div class="d-flex justify-content-end sticky-bottom bottom-5">
                 <button @click="clearReview" class="button btn btn-primary">Find your Next Game!</button>

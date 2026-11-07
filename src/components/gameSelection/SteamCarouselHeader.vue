@@ -1,5 +1,5 @@
 <script>
-import ImageCarousel from './imageCarousel.vue';
+import ImageCarousel from './ImageCarousel.vue';
 import SteamImage from '@/components/SteamImage.vue';
 
 export default {
