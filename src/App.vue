@@ -1,4 +1,6 @@
 <script>
+import BacklogCollection from './models/BacklogCollection.js';
+
 import Album from './models/Album.js';
 import Book from './models/Book.js';
 import Game from './models/Game.js';
@@ -64,7 +66,7 @@ export default {
 
             ],
 
-            fullLibrary: [
+            allData: [
                 new Game("Apico", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1390190/header.jpg?t=1780568220", ["Casual", "Simulation"], "APICO is a laid-back beekeeping sim game about breeding, collecting, &amp; conserving bees! Set in a series of lush environments, APICO uniquely combines resource gathering, biology, and beekeeping minigames, taking ideas from a mix of real-life and fantasy apiculture &amp; floriculture.", 72),
                 new Game("DEMON'S TILT", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/422510/header.jpg?t=1736882887", ["Action", "Indie"], "TURBO CHARGED PINBALL RETURNS! Now with bigger sprites, more baddies, more secrets &amp; MORE BULLETS! Demon's Tilt pushes the limits of the Video Pinball genre with SHMUP &amp; Hack N' Slash elements.", 29),
                 new Game("Chicory: A Colorful Tale", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1123450/header.jpg?t=1783360001", ["Adventure", "Indie", "RPG"], "A top-down adventure game in a coloring book world full of vibrant characters. Use painting powers to explore, solve puzzles, make friends, and draw on anything! From creators on Wandersong + Celeste.", 33),
@@ -100,6 +102,12 @@ export default {
                 new Book("Inferno","https://fcs-img.s3.amazonaws.com/1ebda62b-7f02-4fab-8e39-a5e6016ae6b4/466eec96-560c-4f00-b720-b18d0118fc06/XL.jpg",["Fiction","Classic"],"Dante’s Inferno follows Dante’s journey through the nine circles of Hell, guided by the Roman poet Virgil, where he witnesses the punishments of sinners. Along the way, the poem explores themes of sin, morality, justice, and redemption.",400),
                 new Book("VEIL: The Secret Wars of the CIA 1981-1987","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWtUG2IJmgUmpBb_SZ3XdxpNYGX23uxhWOTQqzjTGtEw&s=10",["Nonfiction","Journalism"],"Based on hundreds of inside sources and secret documents, the author reveals the inner operations of the C.I.A., the world's largest and most sophisticated espionage apparatus, its players, and its clandestine relationships throughout the world",543),
             ],
+        }
+    },
+
+    computed: {
+        fullLibrary(){
+            return BacklogCollection(this.allData);
         }
     },
 

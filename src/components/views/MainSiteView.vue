@@ -81,7 +81,6 @@ export default{
                 i++
             });
             if (add) {
-                console.log("hi2")
                 this.reviewList.push(review);
             }
         },

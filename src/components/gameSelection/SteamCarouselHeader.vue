@@ -1,4 +1,8 @@
 <script>
+import Album from '@/models/Album.js';
+import Game from '@/models/Game.js';
+import Book from '@/models/Book.js';
+
 import ImageCarousel from './ImageCarousel.vue';
 import SteamImage from '@/components/SteamImage.vue';
 
@@ -19,8 +23,6 @@ export default {
         return {
             rerollsLeft: this.rerollsAllowed + 1,
 
-            librarySelection: [],
-
             activeSelection: [{ name: "hi", imageUrl: "" }, { name: "hi", imageUrl: "" }, { name: "hi", imageUrl: "" }, { name: "hi", imageUrl: "" }, { name: "hi", imageUrl: "" }],
         };
     },
@@ -29,37 +31,11 @@ export default {
         getRandomGames() {
             if (this.rerollsLeft >= 1) {
                 for (let i = 0; i < 5; i++) {
-                    try {
-                        this.activeSelection[i] = this.librarySelection.splice((Math.floor(Math.random() * (this.librarySelection.length))), 1)[0]
-
-                        this.activeSelection[i].seen = true;
-                    } catch (error) {
-                        this.fixSeen();
-                    }
+                    this.activeSelection[i] = this.fullLibrary.getUnseenRandom();
                 }
 
                 this.rerollsLeft--;
             }
-        },
-
-        fixSeen(){
-            this.fullLibrary.forEach(game => {
-                game.seen = false;
-            });
-            this.librarySelection = [];
-
-            this.rerollsLeft++;
-
-            this.copyLibrary();
-            this.getRandomGames();
-        },
-
-        copyLibrary() {
-            this.fullLibrary.forEach(game => {
-                if (!game.seen) {
-                    this.librarySelection.push(game);
-                }
-            });
         },
 
         shiftListRight() {
@@ -74,9 +50,6 @@ export default {
     },
 
     mounted() {
-        this.copyLibrary()
-        console.log(this.librarySelection)
-
         this.getRandomGames()
     },
 
