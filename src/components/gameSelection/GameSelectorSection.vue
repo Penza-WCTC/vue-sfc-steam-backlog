@@ -9,9 +9,14 @@ export default {
         GameDescription
     },
 
+    props:{
+        fullLibrary:{type: Array}
+    },  
+
     data: function () {
         return {
             activeGame: { name: "temp", shortDescription: "tempDesc", tags: ["temp1", "temp2", "temp3"] },
+            
         }
     },
 
@@ -26,7 +31,7 @@ export default {
 <template>
     <div class="container text-start pb-3 mb-4 ">
         <div class=" px-3 pb-3 border border-2 row g-3 bg-light rounded">
-            <steam-carousel-header :rerolls-allowed="5" @save-this="saveNewData"></steam-carousel-header>
+            <steam-carousel-header :rerolls-allowed="5" :full-library="fullLibrary" @save-this="saveNewData"></steam-carousel-header>
 
             <game-description :active-game="activeGame"></game-description>
 

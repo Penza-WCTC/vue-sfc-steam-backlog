@@ -10,7 +10,8 @@ export default{
     name: "MainSiteView",
 
     props:{
-        reviewList: {type: Array, required: true}
+        reviewList: {type: Array, required: true},
+        fullLibrary: {type:Array}
     },
 
     components: {
@@ -25,13 +26,7 @@ export default{
     data: function () {
         return {
             activeGame: {
-                appId: "427520",
-                name: "Factorio",
-                tags: ["tempTag1", "tempTag2", "tempTag3"],
-                achievementNumber: 30,
-                shortDescription: "temp Description",
-                releaseDate: "imagineThisIsTheDate",
-                hoursPlayed: 36.3,
+                name: "Factorio", imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", tags:["Casual","Indie","Simulation","Strategy"], achievementCount: "88", shortDescription: "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", hoursPlayed: 36, selectedDate: "11/1/26", seen: true
             },
 
             newReview: {},
@@ -46,8 +41,9 @@ export default{
     methods: {
         setActiveGame(activeGame) {
             this.activeGame = activeGame;
-        },
 
+            this.activeGame.selectedDate = new Date().toLocaleDateString();
+        },
 
         checkAlreadyReviewed(reviewList, username, id) {
             let returner = false
@@ -90,8 +86,6 @@ export default{
             }
         },
 
-        
-
         removeItem(review) {
             this.reviewList.splice(this.reviewList.indexOf(review), 1);
         }
@@ -107,7 +101,7 @@ export default{
         :progress="[Boolean(!activeGame.appId && !newReview.gameName), Boolean(activeGame.appId), Boolean(newReview.gameName)]"></progress-bar>
     </div>
 
-        <div id="view1" v-if="activeGame.appId">
+        <div id="view1" v-if="activeGame.name">
 
             <active-game-display :active-game="activeGame"></active-game-display>
 
@@ -240,6 +234,6 @@ export default{
             </div>
         </div>
 
-        <game-selector-section @save-this-game="setActiveGame"
-            v-if="!activeGame.appId && !newReview.gameName"></game-selector-section>
+        <game-selector-section :full-library="fullLibrary" @save-this-game="setActiveGame"
+            v-if="!activeGame.name && !newReview.gameName"></game-selector-section>
 </template>

@@ -19,7 +19,7 @@ export default {
     <div class="container text-start pb-3 mb-4">
         <div class="px-3 pb-3 border border-2 row g-3 bg-light rounded">
             <div class="col-md-3 d-flex justify-content-center">
-                <steam-image :app-id="activeGame.appId" :game-name="activeGame.name" format="library_600x900"
+                <steam-image :image-url="activeGame.imageUrl" :game-name="activeGame.name"
                     class="img-fluid" style="max-height: 250px;"></steam-image>
             </div>
 
@@ -29,24 +29,18 @@ export default {
                         <p class="fs-4">{{ activeGame.name }}</p>
                     </div>
                     <div class="col-sm-6">
-                        <p class="fs-4">{{ activeGame.releaseDate }}</p>
+                        <p class="fs-4">Started {{ activeGame.selectedDate }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row">
-                            <p class="fs-5">Current Playtime:</p>
-                        </div>
-                        <div class="row">
-                            <p class="fs-6">{{ activeGame.hoursPlayed }} Hrs</p>
+                            <p class="fs-6">{{ activeGame.hoursPlayed }} Hours</p>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
-                            <p class="fs-5">Current Achievements:</p>
-                        </div>
-                        <div class="row">
-                            <p class="fs-6">16 / 30</p>
+                            <p class="fs-6">18 / {{ activeGame.achievementCount }} Achievements</p>
                         </div>
                     </div>
                 </div>
