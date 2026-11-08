@@ -11,7 +11,7 @@ export default {
         computedImageUrl() {
             return this.imageUrl || new URL(`/src/images/imageUnavailable.jpg`, import.meta.url).href;
         }
-    }
+    },
 }
 
 </script>
