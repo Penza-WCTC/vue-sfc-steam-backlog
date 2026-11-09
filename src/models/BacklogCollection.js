@@ -1,8 +1,18 @@
 import Media from "./Media.js"
 
+/**
+ * This adds BacklogCollection functionality to a passed in array of Media objects.
+ * @param {Array<Media>?} items 
+ * @returns The same Array<Media> that now has BacklogCollection methods.
+ */
 export default function BacklogCollection(items) {
     items = items ?? []
 
+    /**
+     * Operates on a list augmented by BacklogCollection and returns a {Media} object
+     * @param {Media} choice 
+     * @returns {Media} One random Media object from the BacklogCollection list that has not been seen before
+     */
     items.getUnseenRandom = function (choice = Media) {
         let chosenArray = items.filter(item => item instanceof choice)
 
