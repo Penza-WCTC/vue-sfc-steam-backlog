@@ -1,4 +1,5 @@
 <script>
+import Game from '@/models/Game';
 import GameSelectorSection from '@/components/gameSelection/GameSelectorSection.vue';
 import AddReviewModal from '@/components/reviewList/AddReviewModal.vue';
 import SteamImage from '@/components/SteamImage.vue';
@@ -6,12 +7,12 @@ import ProgressBar from '@/components/ProgressBar.vue';
 import ActiveGameDisplay from '@/components/selectedGameInfo/ActiveGameDisplay.vue';
 import ReviewList from '@/components/reviewList/ReviewList.vue';
 
-export default{
+export default {
     name: "MainSiteView",
 
-    props:{
-        reviewList: {type: Array, required: true},
-        fullLibrary: {type:Array}
+    props: {
+        reviewList: { type: Array, required: true },
+        fullLibrary: { type: Array }
     },
 
     components: {
@@ -25,16 +26,14 @@ export default{
 
     data: function () {
         return {
-            activeGame: {
-                name: "Factorio", imageUrl: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", tags:["Casual","Indie","Simulation","Strategy"], achievementCount: "88", shortDescription: "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", hoursPlayed: 36, selectedDate: "11/1/26", seen: true
-            },
+            activeGame: new Game("Factorio", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", ["Casual", "Indie", "Simulation", "Strategy"], "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", 88),
 
             newReview: {},
 
             currentUser: {
                 name: "testUser",
                 id: "123123123123123123",
-            },   
+            },
         }
     },
 
@@ -90,15 +89,16 @@ export default{
         }
     },
 
-    
+
 }
 </script>
 
 <template>
     <div class="container">
-        <progress-bar :progress-text="['Pick', 'Play', 'Review']"
-        :progress="[Boolean(!activeGame.appId && !newReview.gameName), Boolean(activeGame.appId), Boolean(newReview.gameName)]"></progress-bar>
-    </div>
+        <div class="container">
+            <progress-bar :progress-text="['Pick', 'Play', 'Review']"
+                :progress="[Boolean(!activeGame.name && !newReview.gameName), Boolean(activeGame.name), Boolean(newReview.gameName)]"></progress-bar>
+        </div>
 
         <div id="view1" v-if="activeGame.name">
 
@@ -235,4 +235,5 @@ export default{
 
         <game-selector-section :full-library="fullLibrary" @save-this-game="setActiveGame"
             v-if="!activeGame.name && !newReview.gameName"></game-selector-section>
+    </div>
 </template>

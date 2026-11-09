@@ -25,9 +25,6 @@ export default {
 </script>
 
 <template>
-
-    <div class="bg-secondary-subtle">
-
         <div class="container text-start pb-3 mb-4 border border-2 py-3 rounded bg-light">
             <div class="row g-3">
                 <div class="col-md-4">
@@ -147,5 +144,4 @@ export default {
                 </div>
             </div>
         </div>
-    </div>
 </template>

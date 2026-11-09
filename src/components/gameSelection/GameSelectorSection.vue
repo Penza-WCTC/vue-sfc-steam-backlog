@@ -25,6 +25,12 @@ export default {
             this.activeGame = newData;
         }
     },
+
+    computed:{
+        typeOfActive(){
+            return this.activeGame.constructor.name;
+        }
+    }
 }
 </script>
 
@@ -88,7 +94,7 @@ export default {
             </div>
 
             <button class="button btn btn-success" @click="$emit('save-this-game', activeGame)">Select This
-                Game!</button>
+                {{typeOfActive}}!</button>
         </div>
     </div>
 </template>

@@ -40,7 +40,11 @@ export default {
                     <div class="col-md-6">
                         <p class="fs-3">{{ review.userName }}</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md" v-if="review.completion != ''">
+                        <p class="px-2 py-1 fs-6">{{ review.completion }}
+                        </p>
+                    </div>
+                    <div class="col-md-3">
                         <p class="fs-3">
                             <i :class="{ 'bi': true, 'bi-star-fill ms-1': true, 'text-success': review.ratingNumber > 2, 'text-danger': review.ratingNumber <= 2 }"
                                 v-for="n in review.ratingNumber"></i>
@@ -48,34 +52,20 @@ export default {
                                 v-for="n in (review.ratingNumber - 5) * -1" v-if="(review.ratingNumber - 5) * -1"></i>
                         </p>
                     </div>
+
                 </div>
+                <hr>    
                 <div class="row g-3">
-                    <div class="col-md-6  d-none d-md-block">
-                        <div class="row">
-                            <p class="fs-5">{{ review.hoursPlayed }} Hrs</p>
-                        </div>
+                    <div class="col" v-if="review.review">
+                        <p class="fs-6">{{ review.review }}</p>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-auto" v-if="review.completion != ''">
-                                <p class="px-2 py-1 fs-6 rounded-pill bg-info d-inline-block">{{ review.completion }}
-                                </p>
-                            </div>
-                        </div>
+                    <div class="col" v-if="!review.review">
+                        <p class="fs-6">This user has chosen to keep thier thoughts to themselves</p>
                     </div>
                 </div>
+
             </div>
         </div>
-        <div class="row g-3 mt-2" v-if="review.review!=''">
-            <div class="offset-1 col-9">
-                <p class="fs-4">Final Thoughts:</p>
-                <p class="fs-6">{{ review.review }}</p>
-            </div>
-        </div>
-        <div class="row g-3 mt-2" v-if="review.review===''">
-            <div class="offset-1 col-9">
-                <p class="fs-6">This user has chosen to keep their thoughts to themselves.</p>
-            </div>
-        </div>
+
     </div>
 </template>

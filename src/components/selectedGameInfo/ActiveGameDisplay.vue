@@ -1,4 +1,8 @@
 <script>
+import Album from '@/models/Album.js';
+import Book from '@/models/Book.js';
+import Game from '@/models/Game.js';
+
 import SteamImage from '@/components/SteamImage.vue';
 
 export default {
@@ -11,6 +15,28 @@ export default {
     props: {
         activeGame: { type: Object, required: true }
     },
+
+    computed:{
+        firstAdaptiveSection(){
+            if(this.activeGame.constructor == Game){
+                return this.activeGame.hoursPlayed+" Hours"
+            }else if(this.activeGame.constructor == Album){
+                return "Written By "+this.activeGame.artist
+            }else if(this.activeGame.constructor == Book){
+                return "Written By "+this.activeGame.author
+            }
+        },
+
+        secondAdaptiveSection(){
+            if(this.activeGame.constructor == Game){
+                return this.activeGame.achievementCount+ " Achievements"
+            }else if(this.activeGame.constructor == Album){
+                return this.activeGame.albumType
+            }else if(this.activeGame.constructor == Book){
+                return this.activeGame.pageCount+ " Pages"
+            }
+        }
+    }
 
 }
 </script>
@@ -35,12 +61,12 @@ export default {
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row">
-                            <p class="fs-6">{{ activeGame.hoursPlayed }} Hours</p>
+                            <p class="fs-6">{{firstAdaptiveSection}}</p>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
-                            <p class="fs-6">18 / {{ activeGame.achievementCount }} Achievements</p>
+                            <p class="fs-6">{{ secondAdaptiveSection }}</p>
                         </div>
                     </div>
                 </div>
