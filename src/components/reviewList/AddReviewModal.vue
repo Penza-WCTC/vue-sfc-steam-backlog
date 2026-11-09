@@ -1,5 +1,6 @@
 <script>
 import {Modal} from 'bootstrap'
+import Review from '@/models/Review.js';
 
 export default {
     name: "AddReviewModal",
@@ -31,32 +32,7 @@ export default {
 
     methods: {
         addReview() {
-            this.reviewObject.completion = this.reviewObject.completion;
-
-            this.reviewObject.hoursPlayed = this.activeGame.hoursPlayed;
-            this.reviewObject.gameId = this.activeGame.appId;
-            this.reviewObject.gameName = this.activeGame.name;
-
-            this.reviewObject.userId = this.userObject.id;
-            this.reviewObject.userName = this.userObject.name;
-
-            this.$emit('add-review', { ...this.reviewObject });
-
-            this.review = {
-                ratingNumber: 1,
-                completion: "",
-                review: "",
-
-                hoursPlayed: 0,
-                gameId: "",
-                gameName: "",
-
-                userId: "",
-                userName: "",
-
-                communityVote: 0,
-                editing: false,
-            };
+            this.$emit('add-review', new Review(this.reviewObject.ratingNumber, this.reviewObject.completion, this.reviewObject.review, this.activeGame, this.userObject.id, this.userObject.name));
         },
     },
 

@@ -4,6 +4,7 @@ import BacklogCollection from './models/BacklogCollection.js';
 import Album from './models/Album.js';
 import Book from './models/Book.js';
 import Game from './models/Game.js';
+import ReviewCollection from './models/ReviewCollection.js';
 
 
 export default {
@@ -11,14 +12,12 @@ export default {
 
     data: function () {
         return {
-            reviewList: [
+            reviewData: [
                 {
                     ratingNumber: 1,
                     completion: 'Game got too repetitive',
                     review: 'too many machines to build. would not build again. too many machines to build. would not build again. too many machines to build. would not build again.',
-                    hoursPlayed: 0,
-                    gameId: '427520',
-                    gameName: 'Factorio',
+                    reviewedMedia: new Game("Factorio", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", ["Casual", "Indie", "Simulation", "Strategy"], "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", 88),
                     userId: '76561198449377399',
                     userName: 'chromokiz',
                     communityVote: 10,
@@ -29,9 +28,7 @@ export default {
                     ratingNumber: 4,
                     completion: 'Finished main quest',
                     review: "I really like how you can build your own base. I think that it's neat that you can build any way you want. I wish the tutorial was more robust. I like it more then Satisfactory. Here are more test words to make this review longer then the last.",
-                    hoursPlayed: 40,
-                    gameId: '427520',
-                    gameName: 'Factorio',
+                    reviewedMedia: new Game("Factorio", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", ["Casual", "Indie", "Simulation", "Strategy"], "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", 88),
                     userId: '76561199086724709',
                     userName: 'FranksSinatra',
                     communityVote: 4,
@@ -42,9 +39,7 @@ export default {
                     ratingNumber: 4,
                     completion: 'Fully Completed',
                     review: "This game was really cool. One of the best dark fantasy RPGs. It is brutal, random, and unforgiving, but absolutely worth every minute of your time. The story, lore, and overall experience will stick with me for a long time.",
-                    hoursPlayed: 80,
-                    gameId: '1002300',
-                    gameName: 'Fear and Hunger',
+                    reviewedMedia: new Game("ENDER LILIES: Quietus of the Knights", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1369630/header.jpg?t=1788931074", ["Action", "Indie", "RPG"], "ENDER LILIES is a dark fantasy 2D action RPG about unraveling the mysteries of a destroyed kingdom. On this sorrowful journey, encounter horrific enemies against whom a moment of inattention could be fatal. Overcome these hardships and seek the truth with the help of fallen knights.", 38),
                     userId: '123123123123123123',
                     userName: 'testUser',
                     communityVote: 4,
@@ -55,9 +50,7 @@ export default {
                     ratingNumber: 2,
                     completion: 'Game was boring',
                     review: "Core Keeper combines many gameplay elements from different genres in one game. That makes it a lot of fun and keeps you hooked. Unfortunately, in the endgame you notice that all these different areas ultimately lead nowhere. One example is the automation with conveyor belts. What do I actually need thousands of resources for that I produce there through automation? They pile up by the thousands in the box and barely help you in the further course of the game. The automated farms are fun, but in the end they aren't really needed.",
-                    hoursPlayed: 26,
-                    gameId: '1621690',
-                    gameName: 'Core Keeper',
+                    reviewedMedia: new Album("Black Elvis", "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/0d/1d/3f/0d1d3f70-63ed-d13f-c94d-e81171e59532/886447096628.jpg/100x100bb.jpg", ["Hip Hop / Rap"], "Black Elvis/Lost in Space (1999) is an album by underground hip-hop pioneer Kool Keith, released under his Black Elvis persona. The album blends experimental hip-hop, futuristic production, eccentric storytelling, and surreal humor.", "Kool Keith", "LP"),
                     userId: '123123123123123123',
                     userName: 'testUser',
                     communityVote: 4,
@@ -67,6 +60,7 @@ export default {
             ],
 
             allData: [
+                new Game("Factorio", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", ["Casual", "Indie", "Simulation", "Strategy"], "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", 88),
                 new Game("Apico", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1390190/header.jpg?t=1780568220", ["Casual", "Simulation"], "APICO is a laid-back beekeeping sim game about breeding, collecting, &amp; conserving bees! Set in a series of lush environments, APICO uniquely combines resource gathering, biology, and beekeeping minigames, taking ideas from a mix of real-life and fantasy apiculture &amp; floriculture.", 72),
                 new Game("DEMON'S TILT", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/422510/header.jpg?t=1736882887", ["Action", "Indie"], "TURBO CHARGED PINBALL RETURNS! Now with bigger sprites, more baddies, more secrets &amp; MORE BULLETS! Demon's Tilt pushes the limits of the Video Pinball genre with SHMUP &amp; Hack N' Slash elements.", 29),
                 new Game("Chicory: A Colorful Tale", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1123450/header.jpg?t=1783360001", ["Adventure", "Indie", "RPG"], "A top-down adventure game in a coloring book world full of vibrant characters. Use painting powers to explore, solve puzzles, make friends, and draw on anything! From creators on Wandersong + Celeste.", 33),
@@ -95,19 +89,23 @@ export default {
                 new Game("Disillusion", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1490060/header.jpg?t=1727797122", ["Action", "Adventure", "Indie", "RPG"], "A mysterious muse calls upon you to investigate a Large tower in an oneiric land.", 18),
                 new Game("Reign of the Renegade", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2306530/header.jpg?t=1750955052", ["Indie", "Strategy"], "Reign of the Renegade is a dice-based roguelite deckbuilder. Ascend the tower, brave the odds, and create powerful synergies. Will you end the Reign of the Renegade?", 42),
                 new Game("EmpyExample", "", ["Cool", "My Favorite"], "this is my description", 160),
-            
-                new Album("Black Elvis","https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/0d/1d/3f/0d1d3f70-63ed-d13f-c94d-e81171e59532/886447096628.jpg/100x100bb.jpg",["Hip Hop / Rap"],"Black Elvis/Lost in Space (1999) is an album by underground hip-hop pioneer Kool Keith, released under his Black Elvis persona. The album blends experimental hip-hop, futuristic production, eccentric storytelling, and surreal humor.","Kool Keith","LP"),
-                new Album("Anti Matter","https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/c7/1e/1bc71ea9-c9a1-b708-3620-0ea49388f9a6/5051083019286.png/100x100bb.jpg",["Hip Hop / Rap"],"Anti-Matter is a single by King Geedorah, MF DOOM's kaiju-inspired alter ego, featuring Mr. Fantastik. Built around a dark, atmospheric sample and gritty hip-hop production, the track showcases clever wordplay, unconventional storytelling, and the duo's distinctive underground rap style.","King Geedorah","Single"),
 
-                new Book("Inferno","https://fcs-img.s3.amazonaws.com/1ebda62b-7f02-4fab-8e39-a5e6016ae6b4/466eec96-560c-4f00-b720-b18d0118fc06/XL.jpg",["Fiction","Classic"],"Dante’s Inferno follows Dante’s journey through the nine circles of Hell, guided by the Roman poet Virgil, where he witnesses the punishments of sinners. Along the way, the poem explores themes of sin, morality, justice, and redemption.","Dante Alighieri",400),
-                new Book("VEIL: The Secret Wars of the CIA 1981-1987","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWtUG2IJmgUmpBb_SZ3XdxpNYGX23uxhWOTQqzjTGtEw&s=10",["Nonfiction","Journalism"],"Based on hundreds of inside sources and secret documents, the author reveals the inner operations of the C.I.A., the world's largest and most sophisticated espionage apparatus, its players, and its clandestine relationships throughout the world","Bob Woodward ",543),
+                new Album("Black Elvis", "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/0d/1d/3f/0d1d3f70-63ed-d13f-c94d-e81171e59532/886447096628.jpg/100x100bb.jpg", ["Hip Hop / Rap"], "Black Elvis/Lost in Space (1999) is an album by underground hip-hop pioneer Kool Keith, released under his Black Elvis persona. The album blends experimental hip-hop, futuristic production, eccentric storytelling, and surreal humor.", "Kool Keith", "LP"),
+                new Album("Anti Matter", "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1b/c7/1e/1bc71ea9-c9a1-b708-3620-0ea49388f9a6/5051083019286.png/100x100bb.jpg", ["Hip Hop / Rap"], "Anti-Matter is a single by King Geedorah, MF DOOM's kaiju-inspired alter ego, featuring Mr. Fantastik. Built around a dark, atmospheric sample and gritty hip-hop production, the track showcases clever wordplay, unconventional storytelling, and the duo's distinctive underground rap style.", "King Geedorah", "Single"),
+
+                new Book("Inferno", "https://fcs-img.s3.amazonaws.com/1ebda62b-7f02-4fab-8e39-a5e6016ae6b4/466eec96-560c-4f00-b720-b18d0118fc06/XL.jpg", ["Fiction", "Classic"], "Dante’s Inferno follows Dante’s journey through the nine circles of Hell, guided by the Roman poet Virgil, where he witnesses the punishments of sinners. Along the way, the poem explores themes of sin, morality, justice, and redemption.", "Dante Alighieri", 400),
+                new Book("VEIL: The Secret Wars of the CIA 1981-1987", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWtUG2IJmgUmpBb_SZ3XdxpNYGX23uxhWOTQqzjTGtEw&s=10", ["Nonfiction", "Journalism"], "Based on hundreds of inside sources and secret documents, the author reveals the inner operations of the C.I.A., the world's largest and most sophisticated espionage apparatus, its players, and its clandestine relationships throughout the world", "Bob Woodward ", 543),
             ],
         }
     },
 
     computed: {
-        fullLibrary(){
+        fullLibrary() {
             return BacklogCollection(this.allData);
+        },
+
+        reviewList(){
+            return ReviewCollection(this.reviewData);
         }
     },
 

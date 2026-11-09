@@ -26,7 +26,7 @@ export default {
 
     data: function () {
         return {
-            activeGame: new Game("Factorio", "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/ab9a2df0a77caebde20dc45adc021de8cdcf7cc5/header.jpg?t=1792752343", ["Casual", "Indie", "Simulation", "Strategy"], "Factorio is a game about building and creating automated factories to produce items of increasing complexity, within an infinite 2D world. Use your imagination to design your factory, combine simple elements into ingenious structures, and finally protect it from the creatures who don't really like you.", 88),
+            activeGame: {},
 
             newReview: {},
 
@@ -44,49 +44,18 @@ export default {
             this.activeGame.selectedDate = new Date().toLocaleDateString();
         },
 
-        checkAlreadyReviewed(reviewList, username, id) {
-            let returner = false
-
-            reviewList.forEach(review => {
-                if (review.username === username) {
-                    if (review.gameID === id) {
-                        returner = true;
-                    }
-                }
-            });
-
-            return returner
-        },
-
         clearReview() {
             this.newReview = {};
         },
 
         addReview(review) {
+            console.log(review,"hi")
+
             this.newReview = review;
-            this.addOrUpdate(review);
+            this.reviewList.add(this.currentUser,review)
 
             this.activeGame = {}
         },
-
-        addOrUpdate(review) {
-            let add = true;
-            let i = 0;
-            this.reviewList.forEach(StoredReview => {
-                if (StoredReview.gameId == review.gameId && StoredReview.userId == review.userId) {
-                    this.reviewList.splice(i, 1, review);
-                    add = false;
-                }
-                i++
-            });
-            if (add) {
-                this.reviewList.push(review);
-            }
-        },
-
-        removeItem(review) {
-            this.reviewList.splice(this.reviewList.indexOf(review), 1);
-        }
     },
 
 
@@ -97,7 +66,7 @@ export default {
     <div class="container">
         <div class="container">
             <progress-bar :progress-text="['Pick', 'Play', 'Review']"
-                :progress="[Boolean(!activeGame.name && !newReview.gameName), Boolean(activeGame.name), Boolean(newReview.gameName)]"></progress-bar>
+                :progress="[Boolean(!activeGame.name && !newReview.reviewedMedia), Boolean(activeGame.name), Boolean(newReview.gameName)]"></progress-bar>
         </div>
 
         <div id="view1" v-if="activeGame.name">
@@ -218,7 +187,7 @@ export default {
 
         </div>
 
-        <div id="view2" v-if="newReview.gameName">
+        <div id="view2" v-if="newReview.reviewedMedia">
             <div class="container text-center pt-2 pb-1 mb-4">
                 <p class="fs-4">Rate Reviews Below!</p>
                 <hr>
@@ -226,7 +195,7 @@ export default {
 
             <!-- list component to put a compression on this list to squish down the elements -->
 
-            <review-list :review-list="reviewList" :new-review="newReview"></review-list>
+            <review-list :review-list="reviewList.getByMedia(newReview.reviewedMedia)"></review-list>
 
             <div class="d-flex justify-content-end sticky-bottom bottom-5">
                 <button @click="clearReview" class="button btn btn-primary">Find your Next Game!</button>
@@ -234,6 +203,6 @@ export default {
         </div>
 
         <game-selector-section :full-library="fullLibrary" @save-this-game="setActiveGame"
-            v-if="!activeGame.name && !newReview.gameName"></game-selector-section>
+            v-if="!activeGame.name && !newReview.reviewedMedia"></game-selector-section>
     </div>
 </template>
