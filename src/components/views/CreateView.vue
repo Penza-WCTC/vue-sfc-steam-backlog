@@ -33,7 +33,7 @@ export default {
             this.userTempLibrary.splice((this.userTempLibrary.findIndex(o => o === objToDelete)),1)
         },
         updateList(){
-            this.$emit('update-full-library',BacklogCollection(this.userTempLibrary))
+            this.$emit('update-full-library',[...this.userTempLibrary])
         }
     },
 }

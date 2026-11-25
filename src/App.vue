@@ -111,7 +111,7 @@ export default {
 
     methods:{
         updateFullLibrary(newLibrary){
-            this.fullLibrary=newLibrary;
+            this.allData=newLibrary;
         }
     },
 
