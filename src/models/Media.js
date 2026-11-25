@@ -18,4 +18,8 @@ export default class Media{
         
         this.seen = false
     }
+
+    creator() {
+        return null;    
+    }
 }

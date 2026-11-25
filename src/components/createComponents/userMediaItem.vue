@@ -1,4 +1,8 @@
 <script>
+import Album from '@/models/Album';
+import Book from '@/models/Book';
+import Game from '@/models/Game';
+
 export default {
     name: "User Media Item Card",
 
@@ -14,11 +18,11 @@ export default {
 
     computed: {
         typeGetter(){
-            if(this.userMedia.type === "book"){
+            if(this.userMedia.constructor == Book){
                 return "📖"
-            }else if(this.userMedia.type === "game"){
+            }else if(this.userMedia.constructor == Game){
                 return "🎮"
-            }else if(this.userMedia.type === "album"){
+            }else if(this.userMedia.constructor == Album){
                 return "🎵"
             }else{
                 return "❔"
@@ -33,7 +37,7 @@ export default {
         v-on:click="deleteMe(userMedia)">
         <div class="d-flex justify-content-between">
             <p class="mb-0">{{typeGetter}} {{userMedia.name}}</p>
-            <p class="mb-0">{{ userMedia.creator }}</p>
+            <p class="mb-0">{{userMedia.creator()}}</p>
         </div>
     </div>
 </template>

@@ -29,4 +29,8 @@ export default class Album extends Media{
         }
     }
 
+    creator(){
+        return this.artist
+    }
+
 }

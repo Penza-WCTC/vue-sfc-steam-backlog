@@ -18,4 +18,8 @@ export default class Book extends Media{
 
         this.pageCount = pageCount
     }
+
+    creator(){
+        return this.author
+    }
 }

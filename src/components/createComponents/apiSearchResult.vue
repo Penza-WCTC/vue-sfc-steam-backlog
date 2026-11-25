@@ -1,4 +1,8 @@
 <script>
+import Album from '@/models/Album';
+import Book from '@/models/Book';
+import Game from '@/models/Game';
+
 export default {
     name: "API Search Result Card",
 
@@ -14,11 +18,11 @@ export default {
 
     computed: {
         typeGetter(){
-            if(this.searchResult.type === "book"){
+            if(this.searchResult.constructor == Book){
                 return "📖"
-            }else if(this.searchResult.type === "game"){
+            }else if(this.searchResult.constructor == Game){
                 return "🎮"
-            }else if(this.searchResult.type === "album"){
+            }else if(this.searchResult.constructor == Album){
                 return "🎵"
             }else{
                 return "❔"
@@ -33,11 +37,11 @@ export default {
         v-on:click="moveMe(searchResult)">
         <div class="d-flex justify-content-between">
             <p class="mb-0">{{typeGetter}} {{searchResult.name}}</p>
-            <p class="mb-0">{{ searchResult.creator }}</p>
+            <p class="mb-0">{{ searchResult.creator() }}</p>
         </div>
         <hr class="mt-0">
         <div>
-            <p>{{ searchResult.description }}</p>
+            <p>{{ searchResult.shortDescription }}</p>
         </div>
     </div>
 </template>
