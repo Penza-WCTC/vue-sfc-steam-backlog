@@ -135,7 +135,12 @@ export default {
                     <img src="./images/Logo v1.png" alt="Logo" width="30" height="24"
                         class="d-inline-block align-text-top">
                 </router-link>
-                <div class="justify-content-end"><router-link to="/profile">
+                <div class="justify-content-end">
+                    <router-link to="/create">
+                        <p class="text-black">Create</p>
+                    </router-link>
+                    
+                    <router-link to="/profile">
                         <p class="text-black">Profile</p>
                     </router-link></div>
             </div>
