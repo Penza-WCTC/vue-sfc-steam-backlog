@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: "hi",
+    name: "API Search Result Card",
 
     props: {
         searchResult: { type: Object, required: true }

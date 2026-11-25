@@ -1,11 +1,13 @@
 <script>
 import apiSearchResult from '../createComponents/apiSearchResult.vue';
+import UserMediaItem from '../createComponents/userMediaItem.vue';
 
 export default {
     name: "CreateView",
 
     components: {
-        apiSearchResult
+        apiSearchResult,
+        UserMediaItem
     },
 
     props: {
@@ -22,7 +24,11 @@ export default {
 
     methods: {
         moveThisData(objToMove){
-            document.getElementById("endpoint").innerHTML+= objToMove.name
+            this.fullLibrary.push(objToMove)
+        },
+        deleteThisData(objToDelete){
+
+            this.fullLibrary.splice((this.fullLibrary.findIndex(o => o === objToDelete)),1)
         }
     },
 }
@@ -31,7 +37,7 @@ export default {
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md px-3 pb-3 border border-2 row g-3 bg-light rounded">
+            <div class="col-md px-3 pb-3 border border-2 g-3 bg-light rounded">
 
                 <form action="" class="row mt-3">
                     <div class="col-auto">
@@ -50,14 +56,14 @@ export default {
                     </div>
                 </form>
 
-                <div class="row" id="startpoint" v-for="result in data">
+                <div class="row" v-for="result in data">
                     <apiSearchResult :search-result="result" @move-this="moveThisData"></apiSearchResult>
                 </div>
 
             </div>
-            <div class="col-md offset-md-1 px-3 pb-3 border border-2 row g-3 bg-light rounded">
-                <div class="row" id="endpoint">
-
+            <div class="col-md offset-md-1 px-3 pb-3 border border-2 g-3 bg-light rounded">
+                <div class="row" v-for="item in fullLibrary">
+                    <UserMediaItem :user-media="item" @delete-this="deleteThisData"></UserMediaItem>
                 </div>
             </div>
         </div>
