@@ -42,20 +42,21 @@ export default {
     },
 
     computed: {
-        filteredResuts() {
-            const filteredResuts = [...this.data]
+        filteredResults() {
+            const filteredResults = [...this.data]
 
             this.userTempLibrary.forEach(result => {
-                const index = filteredResuts.findIndex(r => r === result)
+                const index = filteredResults.findIndex(r => r.name == result.name && r.constructor == result.constructor)
 
                 if (index != -1) {
-                    filteredResuts.splice(index, 1)
+                    filteredResults.splice(index, 1)
                 }
             });
 
-            return filteredResuts
+            return filteredResults
         }
     },
+
 }
 </script>
 
@@ -81,7 +82,7 @@ export default {
                     </div>
                 </form>
 
-                <div class="row" v-for="result in filteredResuts">
+                <div class="row" v-for="result in filteredResults">
                     <apiSearchResult :search-result="result" @move-this="moveThisData"></apiSearchResult>
                 </div>
 
