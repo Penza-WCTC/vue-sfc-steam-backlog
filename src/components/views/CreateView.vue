@@ -1,14 +1,28 @@
 <script>
+import apiSearchResult from '../createComponents/apiSearchResult.vue';
+
 export default {
     name: "CreateView",
+
+    components: {
+        apiSearchResult
+    },
 
     props: {
         fullLibrary: { type: Array }
     },
 
-    methods:{
-        testMethod(event){
-            document.getElementById("endpoint").appendChild(event.currentTarget);
+    data: function () {
+        return {
+            data: [{ type: "book", name: "Dante's Inferno", creator: "Dante ig", description: "This is my Dante short description" },
+            { type: "album", name: "Black Elvis", creator: "Kool Keith", description: "This is my Black Elvis short description" },
+            { type: "game", name: "League of Legends", creator: "Riot Games", description: "This is my LoL short description" }]
+        }
+    },
+
+    methods: {
+        moveThisData(objToMove){
+            document.getElementById("endpoint").innerHTML+= objToMove.name
         }
     },
 }
@@ -36,39 +50,8 @@ export default {
                     </div>
                 </form>
 
-                <div class="row" id="startpoint">
-                    <div class="col-12 border border-secondary border-opacity-50 rounded mt-3 pt-1 bg-secondary-subtle pointer" v-on:click="testMethod($event)">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-0">📖 Dante's Inferno</p>
-                            <p class="mb-0">Dante ig</p>
-                        </div>
-                        <hr class="mt-0">
-                        <div>
-                            <p>This is the short description of the media object above</p>
-                        </div>
-                    </div>
-
-                    <div class="col-12 border border-secondary border-opacity-50 rounded mt-3 pt-1 bg-secondary-subtle pointer" v-on:click="testMethod($event)">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-0">🎮 League of Legends</p>
-                            <p class="mb-0">Riot Games</p>
-                        </div>
-                        <hr class="mt-0">
-                        <div>
-                            <p>This is the short description of the media object above</p>
-                        </div>
-                    </div>
-
-                    <div class="col-12 border border-secondary border-opacity-50 rounded mt-3 pt-1 bg-secondary-subtle pointer" v-on:click="testMethod($event)">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-0">🎵 Black Elvis</p>
-                            <p class="mb-0">Kool Keith</p>
-                        </div>
-                        <hr class="mt-0">
-                        <div>
-                            <p>This is the short description of the media object above</p>
-                        </div>
-                    </div>
+                <div class="row" id="startpoint" v-for="result in data">
+                    <apiSearchResult :search-result="result" @move-this="moveThisData"></apiSearchResult>
                 </div>
 
             </div>
