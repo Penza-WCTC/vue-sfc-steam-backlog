@@ -18,7 +18,7 @@ export default function ReviewCollection(items){
     /**
      * Operates on a array augmented by ReviewCollection
      * @param {Media} media This is stored in Reviews as reviewedMedia, otherwise any Media subclass works. 
-     * @returns {Array<Review>} A Filtered version of the array the method was called on that is only reviews on the passed in Media object. 
+     * @returns {Array<Review>|null} A Filtered version of the array the method was called on that is only reviews on the passed in Media object. 
      */
     items.getByMedia = function(media){
         //add in an id system, decide if you want to use steam id's, or your own id system

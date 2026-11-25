@@ -69,8 +69,8 @@ export default {
     <div>
         <image-carousel>
             <template v-slot:mobile-image>
-                <steam-image :image-url="activeSelection[0].imageUrl" :game-name="activeSelection[0].name"
-                    class="w-100"></steam-image>
+                <steam-image :image-url="activeSelection[0].imageUrl" 
+                :game-name="activeSelection[0].name"></steam-image>
             </template>
             <template v-slot:back-left>
                 <steam-image :image-url="activeSelection[3].imageUrl"

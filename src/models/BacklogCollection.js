@@ -2,7 +2,7 @@ import Media from "./Media.js"
 
 /**
  * This adds BacklogCollection functionality to a passed in array of Media objects.
- * @param {Array<Media>?} items 
+ * @param {Array<Media>|null} items 
  * @returns The same Array<Media> that now has BacklogCollection methods.
  */
 export default function BacklogCollection(items) {

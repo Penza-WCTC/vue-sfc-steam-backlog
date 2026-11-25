@@ -13,12 +13,19 @@ export default {
 <template>
     <div class="pb-5 mb-1 position-relative">
         <div class="d-xl-none d-block">
-            <slot name="mobile-image"></slot>
+            <img :src="defaultBackground" alt="Spacing Background"
+                    class="d-block opacity-0">
+
+                <div class="slot-foreground">
+                    <slot name="mobile-image"></slot>
+                </div>
+
+            
         </div>
         <div class="z-0 d-none d-xl-flex position-relative top-0 container justify-content-between">
             <div class="position-relative d-inline-block w-fit">
                 <img :src="defaultBackground" alt="Spacing Background"
-                    class="d-block rounded border border-2 border-primary">
+                    class="d-block opacity-0">
 
                 <div class="slot-foreground">
                     <slot name="back-left"></slot>
@@ -26,7 +33,7 @@ export default {
             </div>
             <div class="position-relative d-inline-block w-fit">
                 <img :src="defaultBackground" alt="Spacing Background"
-                    class="d-block rounded border border-2 border-primary">
+                    class="d-block opacity-0">
 
                 <div class="slot-foreground">
                     <slot name="back-right"></slot>
@@ -36,7 +43,7 @@ export default {
         <div class="z-1 d-none d-xl-flex position-absolute top-10 container justify-content-evenly pe-4">
             <div class="position-relative d-inline-block w-fit">
                 <img :src="defaultBackground" alt="Spacing Background"
-                    class="d-block rounded border border-2 border-primary">
+                    class="d-block opacity-0">
 
                 <div class="slot-foreground">
                     <slot name="top-left"></slot>
@@ -44,7 +51,7 @@ export default {
             </div>
             <div class="position-relative d-inline-block w-fit">
                 <img :src="defaultBackground" alt="Spacing Background"
-                    class="d-block rounded border border-2 border-primary">
+                    class="d-block opacity-0">
 
                 <div class="slot-foreground">
                     <slot name="top-right"></slot>
@@ -55,7 +62,7 @@ export default {
 
             <div class="position-relative d-inline-block w-fit">
                 <img :src="defaultBackground" alt="Spacing Background"
-                    class="d-block rounded border border-2 border-primary">
+                    class="d-block opacity-0">
 
                 <div class="slot-foreground">
                     <slot name="center"></slot>

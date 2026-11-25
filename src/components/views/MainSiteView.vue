@@ -66,7 +66,7 @@ export default {
     <div class="container">
         <div class="container">
             <progress-bar :progress-text="['Pick', 'Play', 'Review']"
-                :progress="[Boolean(!activeGame.name && !newReview.reviewedMedia), Boolean(activeGame.name), Boolean(newReview.gameName)]"></progress-bar>
+                :progress="[Boolean(!activeGame.name && !newReview.reviewedMedia), Boolean(activeGame.name), Boolean(newReview.reviewedMedia)]"></progress-bar>
         </div>
 
         <div id="view1" v-if="activeGame.name">
