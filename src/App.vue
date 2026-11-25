@@ -109,6 +109,12 @@ export default {
         }
     },
 
+    methods:{
+        updateFullLibrary(newLibrary){
+            this.fullLibrary=newLibrary;
+        }
+    },
+
     // mounted: function () {
     //     if (localStorage.getItem('reviewList')) {
     //         this.reviewList = JSON.parse(localStorage.getItem('reviewList'));
@@ -147,7 +153,7 @@ export default {
         </nav>
 
         <div class="container-fluid">
-            <router-view :review-list="reviewList" :full-library="fullLibrary" />
+            <router-view :review-list="reviewList" :full-library="fullLibrary" @update-full-library="updateFullLibrary"/>
         </div>
 
         <footer class="d-flex justify-content-center bg-secondary pt-2 mt-5">
