@@ -11,11 +11,17 @@ import Media from "./Media.js"
  * @extends models.Media
  */
 export default class Game extends Media{
-    constructor(name,imageUrl,tags,shortDescription,achievementCount){
+    constructor(name,imageUrl,tags,shortDescription,achievementCount,developer = ""){
         super(name,imageUrl,tags,shortDescription)
 
         this.achievementCount = achievementCount ?? 0
 
         this.hoursPlayed = 0
+
+        this.developer = developer ?? ""
+    }
+
+    creator() {
+        return this.developer;    
     }
 }
